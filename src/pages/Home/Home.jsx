@@ -1,5 +1,27 @@
 import React from "react";
 
 export const Home = () => {
-  return <div>Home</div>;
+  return (
+    <section id="home">
+      <main className="main-content">
+        <header className="title-container">
+          <div className="main-heading">Shinobi Notes</div>
+          <div className="sub-heading">Take your notes in a Shinobi way.</div>
+        </header>
+        <div className="btn-grp">
+          <button className="btn outline-warning">contribute</button>
+          <button className="btn warning">Get Started</button>
+        </div>
+      </main>
+      <aside className="aside-content">
+        <div className="img-container">
+          <img
+            className="img img-responsive"
+            src="https://res.cloudinary.com/randomwave45/image/upload/v1648206551/notes-ninja_kz4935.png"
+            alt="notes ninja"
+          />
+        </div>
+      </aside>
+    </section>
+  );
 };

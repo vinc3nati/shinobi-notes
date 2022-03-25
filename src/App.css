@@ -1,5 +1,22 @@
 @import url("./pages/Home/home.css");
+@import url("./components/Footer/footer.css");
 
 body {
   overflow: auto;
+  background-color: var(--color-grey-dark-3);
+  color: var(--color-tertiary);
+}
+
+.btn.warning {
+  background-color: var(--color-warning);
+}
+
+.btn.outline-warning {
+  border: 1px solid var(--color-warning-light);
+  color: var(--color-warning);
+  background-color: transparent;
+}
+
+.highlight {
+  color: var(--color-warning);
 }
