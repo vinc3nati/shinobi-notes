@@ -1,6 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useDocumentTitle } from "../../hooks/DocumentTitle";
 
-export const Home = () => {
+export const Home = ({ title }) => {
+  useDocumentTitle(title);
+  let navigate = useNavigate();
   return (
     <section id="home">
       <main className="main-content">
@@ -9,8 +13,12 @@ export const Home = () => {
           <div className="sub-heading">Take your notes in a Shinobi way.</div>
         </header>
         <div className="btn-grp">
-          <button className="btn outline-warning">contribute</button>
-          <button className="btn warning">Get Started</button>
+          <a href="https://github.com/vinc3nati/shinobi-notes" target="_blank">
+            <button className="btn outline-warning">contribute</button>
+          </a>
+          <button className="btn warning" onClick={() => navigate("/signup")}>
+            Get Started
+          </button>
         </div>
       </main>
       <aside className="aside-content">

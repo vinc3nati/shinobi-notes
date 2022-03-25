@@ -1,4 +1,5 @@
 @import url("./pages/Home/home.css");
+@import url("./pages/Auth/auth.css");
 @import url("./components/Footer/footer.css");
 
 body {
@@ -19,4 +20,21 @@ body {
 
 .highlight {
   color: var(--color-warning);
+}
+
+.input-grp > input:focus,
+.input-area:focus {
+  box-shadow: 0 0 0 1px var(--color-warning);
+}
+
+.checkbox-grp label::before {
+  border: 2px solid var(--color-warning);
+}
+
+.checkbox-grp input:checked + label::before {
+  background-color: var(--color-warning);
+}
+
+.sub-text {
+  margin-top: 1rem;
 }
