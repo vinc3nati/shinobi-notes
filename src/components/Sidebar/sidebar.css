@@ -1,0 +1,32 @@
+.sidebar {
+  position: fixed;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  max-width: 250px;
+}
+
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sidebar-link {
+  display: flex;
+  column-gap: 1.5rem;
+  padding: 1.5rem 2rem;
+  font-size: 1.65rem;
+  cursor: pointer;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  transition: background-color 0.3s;
+}
+
+.sidebar-link.active {
+  background-color: rgba(230, 166, 71, 0.7);
+}
+
+.sidebar-link:not(.active):hover {
+  background-color: var(--color-grey-dark);
+}

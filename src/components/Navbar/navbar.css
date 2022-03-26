@@ -1,0 +1,13 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+
+.navbar {
+  background-color: var(--color-warning-light);
+}
+
+.search-bar .btn.tertiary {
+  color: var(--color-warning);
+}

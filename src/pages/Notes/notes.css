@@ -1,0 +1,9 @@
+#notes {
+  height: 100vh;
+}
+
+.notes-container {
+  width: 100%;
+  display: flex;
+  padding: 1rem 1.5rem;
+}

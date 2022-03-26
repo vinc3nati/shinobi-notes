@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useData } from "../../contexts/data-context";
 
 export const Login = ({ handleLogin }) => {
   const initialVal = {
@@ -7,6 +8,7 @@ export const Login = ({ handleLogin }) => {
     password: "",
   };
   const [login, setLogin] = useState(initialVal);
+  const { setLoader } = useData();
 
   const testLogin = {
     email: "adarshbalika@gmail.com",
@@ -19,7 +21,9 @@ export const Login = ({ handleLogin }) => {
 
   const handleSubmit = async () => {
     e.preventDefault();
+    setLoader(true);
     await handleLogin(login);
+    setLoader(false);
   };
 
   return (

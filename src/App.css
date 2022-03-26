@@ -1,6 +1,12 @@
 @import url("./pages/Home/home.css");
 @import url("./pages/Auth/auth.css");
+@import url("./pages/Notes/notes.css");
 @import url("./components/Footer/footer.css");
+@import url("./components/Loader/loader.css");
+@import url("./components/Sidebar/sidebar.css");
+@import url("./components/Navbar/navbar.css");
+@import url("./components/DisplyaNotes/displayNotes.css");
+@import url("./components/NoteCard/noteCard.css");
 
 body {
   overflow: auto;

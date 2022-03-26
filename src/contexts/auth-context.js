@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
           JSON.stringify({ user: foundUser, token: encodedToken })
         );
         setUser({ user: foundUser, token: encodedToken });
-        navigate("/");
+        navigate("/notes");
       }
     } catch (err) {
       console.error(err);
@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
           JSON.stringify({ user: createdUser, token: encodedToken })
         );
         setUser({ user: createdUser, token: encodedToken });
-        navigate("/");
+        navigate("/notes");
       }
     } catch (err) {
       console.error(err);

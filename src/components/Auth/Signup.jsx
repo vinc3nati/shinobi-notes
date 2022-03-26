@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useData } from "../../contexts/data-context";
 
 export const Signup = ({ handleSignUp }) => {
   const initialVal = {
@@ -8,13 +9,17 @@ export const Signup = ({ handleSignUp }) => {
     password: "",
   };
   const [signup, setSignup] = useState(initialVal);
+  const { setLoader } = useData();
+
   const handleChange = (e) => {
     setSignup({ ...signup, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoader(true);
     await handleSignUp(signup);
+    setLoader(false);
   };
   return (
     <>
