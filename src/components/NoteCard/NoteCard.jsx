@@ -1,4 +1,5 @@
 import React from "react";
+import { FaTrash, FaEdit } from "react-icons/fa";
 
 export const NoteCard = ({ operations }) => {
   const { note, setNote, handleDelete } = operations;
@@ -10,10 +11,10 @@ export const NoteCard = ({ operations }) => {
       <p className="note-card-time">Created At: {createdAt}</p>
       <footer className="note-card-footer">
         <button className="btn outline-error" onClick={() => handleDelete(_id)}>
-          Delete
+          <FaTrash />
         </button>
         <button className="btn warning" onClick={() => setNote(note)}>
-          Edit
+          <FaEdit />
         </button>
       </footer>
     </div>

@@ -3,13 +3,13 @@
   padding: 1.5rem 2rem;
   box-shadow: 0 3px 5px rgb(0 0 0 / 20%);
   border: 1px solid transparent;
+  margin: 1rem 0;
   border-radius: var(--border-radius-3);
   transition: all 0.3s;
 }
 
 .note-card:hover {
   border: 1px solid var(--color-warning);
-  margin: 1rem 0;
 }
 
 .note-card > *:not(:last-child) {
