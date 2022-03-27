@@ -16,7 +16,7 @@ export const Home = ({ title }) => {
           <a href="https://github.com/vinc3nati/shinobi-notes" target="_blank">
             <button className="btn outline-warning">contribute</button>
           </a>
-          <button className="btn warning" onClick={() => navigate("/signup")}>
+          <button className="btn warning" onClick={() => navigate("/notes")}>
             Get Started
           </button>
         </div>
