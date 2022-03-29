@@ -10,4 +10,10 @@
 
 .search-bar .btn.tertiary {
   color: var(--color-warning);
+  background-color: var(--color-background);
+}
+.main .search-bar,
+.search-bar input[type="search"] {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
 }

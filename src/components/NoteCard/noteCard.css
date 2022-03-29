@@ -16,6 +16,21 @@
   margin: 1rem 0;
 }
 
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.archive {
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.archive:hover {
+  opacity: 0.8;
+}
+
 .note-card-heading {
   font-size: 2.5rem;
   font-weight: 700;

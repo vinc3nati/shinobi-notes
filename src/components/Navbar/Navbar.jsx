@@ -2,10 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo_2.png";
 import { FaSearch, FaUserCircle } from "react-icons/fa";
-import { AiFillSetting } from "react-icons/ai";
 import { useAuth } from "../../contexts/auth-context";
 import { useData } from "../../contexts/data-context";
 import { ACTIONS, FILTERS } from "../../utils/constants";
+import { ThemeSwitcher } from "../ThemeSwitcher/ThemeSwitcher";
+import { Account } from "../Account/Account";
 
 export const Navbar = () => {
   const {
@@ -43,18 +44,8 @@ export const Navbar = () => {
             />
           </div>
         </div>
-
-        <div className="nav-links">
-          <Link to="/wishlist" className="badge">
-            <AiFillSetting className="badge-icon" />
-          </Link>
-        </div>
-      </div>
-      <div className="user">
-        <button className="btn warning icon-btn" onClick={() => handleLogOut()}>
-          <FaUserCircle />
-          {user.name.split(" ")[0]}
-        </button>
+        <ThemeSwitcher />
+        <Account />
       </div>
     </nav>
   );
