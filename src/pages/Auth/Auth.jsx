@@ -13,7 +13,7 @@ export const Auth = ({ title }) => {
 
   useEffect(() => {
     if (user.token) {
-      navigate("/");
+      navigate("/notes");
     }
   }, [user.token]);
 

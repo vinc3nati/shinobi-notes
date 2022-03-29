@@ -15,7 +15,23 @@ export const initialValue = {
 export const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.SetNotes:
-      return { ...state, notes: [...action.payload.notes] };
+      return {
+        ...state,
+        notes: [...action.payload.notes],
+      };
+
+    case ACTIONS.SetArchives:
+      return {
+        ...state,
+        archives: [...action.payload.archives],
+        notes: action.payload.notes ? [...action.payload.notes] : state.notes,
+      };
+
+    case ACTIONS.SetTrash:
+      return {
+        ...state,
+        trash: [...action.payload.trash],
+      };
 
     case ACTIONS.ChangeFilters:
       return {
@@ -25,5 +41,8 @@ export const reducer = (state, action) => {
           [action.payload.type]: action.payload.value,
         },
       };
+
+    default:
+      return state;
   }
 };

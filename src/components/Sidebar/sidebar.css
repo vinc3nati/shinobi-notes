@@ -30,3 +30,11 @@
 .sidebar-link:not(.active):hover {
   background-color: var(--color-grey-dark);
 }
+
+.hide {
+  display: none;
+}
+
+.m-1 {
+  margin-left: 1rem;
+}

@@ -8,6 +8,26 @@
   background-color: var(--color-warning-light);
 }
 
+.menu {
+  color: var(--color-foreground);
+  font-size: 4rem;
+  padding: 0.5rem;
+  margin-right: 2rem;
+  cursor: pointer;
+  border-radius: var(--border-rounded);
+}
+
+.menu:hover {
+  background-color: var(--color-tertiary-dark);
+  color: var(--color-background);
+}
+
 .search-bar .btn.tertiary {
   color: var(--color-warning);
+  background-color: var(--color-background);
+}
+.main .search-bar,
+.search-bar input[type="search"] {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
 }

@@ -1,0 +1,24 @@
+.user {
+  display: flex;
+  column-gap: 0.8rem;
+}
+
+.account-name {
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--color-foreground);
+}
+
+.account-dropdown {
+  position: fixed;
+  top: 50px;
+  width: min-content;
+}
+
+.account-dropdown > ul {
+  border: none;
+  background-color: var(--color-background-accent);
+  color: var(--color-foreground);
+}

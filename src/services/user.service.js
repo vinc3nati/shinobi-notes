@@ -4,9 +4,8 @@ const API = {
   LOGIN: "/api/auth/login",
   REGISTER: "/api/auth/signup",
   NOTES: "/api/notes",
-  GET_ARCHIVE_NOTES: "/api/archives",
-  POST_ARCHIVE_NOTES: "/notes/archives",
-  DELETE_ARCHIVE_NOTES: "/api/archives/delete",
+  ARCHIVE_NOTES: "/api/archives",
+  POST_ARCHIVE_NOTES: "/api/notes/archives",
 };
 
 export const loginUser = async ({ email, password }) =>
@@ -53,6 +52,42 @@ export const editNotes = async ({ notesId, note, token }) =>
 
 export const deleteNotes = async ({ notesId, token }) =>
   await axios.delete(`${API.NOTES}/${notesId}`, {
+    headers: {
+      authorization: token,
+    },
+  });
+
+export const getArchives = async ({ token }) =>
+  await axios.get(API.ARCHIVE_NOTES, {
+    headers: {
+      authorization: token,
+    },
+  });
+
+export const postArchives = async ({ notesId, token, note }) =>
+  await axios.post(
+    `${API.POST_ARCHIVE_NOTES}/${notesId}`,
+    { note },
+    {
+      headers: {
+        authorization: token,
+      },
+    }
+  );
+
+export const restoreArchives = async ({ notesId, token }) =>
+  await axios.post(
+    `${API.ARCHIVE_NOTES}/restore/${notesId}`,
+    {},
+    {
+      headers: {
+        authorization: token,
+      },
+    }
+  );
+
+export const deleteArchives = async ({ notesId, token }) =>
+  await axios.delete(`${API.ARCHIVE_NOTES}/delete/${notesId}`, {
     headers: {
       authorization: token,
     },
