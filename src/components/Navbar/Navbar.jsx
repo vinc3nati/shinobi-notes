@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo_2.png";
-import { FaSearch, FaUserCircle } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
+import { BiMenuAltLeft } from "react-icons/bi";
 import { useAuth } from "../../contexts/auth-context";
 import { useData } from "../../contexts/data-context";
 import { ACTIONS, FILTERS } from "../../utils/constants";
 import { ThemeSwitcher } from "../ThemeSwitcher/ThemeSwitcher";
 import { Account } from "../Account/Account";
+import { useShrinkSidebar } from "../../contexts/shrink-sidebar-context";
 
 export const Navbar = () => {
   const {
@@ -14,9 +16,11 @@ export const Navbar = () => {
     handleLogOut,
   } = useAuth();
   const { state, dispatch } = useData();
+  const { toggleShrink } = useShrinkSidebar();
 
   return (
     <nav className="navbar">
+      <BiMenuAltLeft className="menu" onClick={toggleShrink} />
       <div className="main">
         <div className="logo">
           <Link to="/">

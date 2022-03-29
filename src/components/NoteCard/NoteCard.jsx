@@ -65,7 +65,6 @@ export const NoteCard = ({ operations }) => {
     setDisabled(true);
     const response = await deleteArchives({ notesId: _id, token });
     if (response.data.archives) {
-      console.log(response.data.archives);
       dispatch({
         type: ACTIONS.SetArchives,
         payload: {

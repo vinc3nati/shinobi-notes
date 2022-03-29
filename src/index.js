@@ -4,6 +4,7 @@ import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider, DataProvider, ThemeProvider } from "./contexts/index";
+import { ShrinkSidebarProvider } from "./contexts/shrink-sidebar-context";
 
 // Call make Server
 makeServer();
@@ -14,7 +15,9 @@ ReactDOM.render(
       <ThemeProvider>
         <AuthProvider>
           <DataProvider>
-            <App />
+            <ShrinkSidebarProvider>
+              <App />
+            </ShrinkSidebarProvider>
           </DataProvider>
         </AuthProvider>
       </ThemeProvider>
