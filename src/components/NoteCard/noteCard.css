@@ -1,9 +1,10 @@
 .note-card {
-  width: max-content;
+  max-width: 300px;
   padding: 1.5rem 2rem;
   box-shadow: 0 3px 5px rgb(0 0 0 / 20%);
   border: 1px solid transparent;
   margin: 1rem 0;
+  color: var(--color-tertiary);
   border-radius: var(--border-radius-3);
   transition: all 0.3s;
 }
@@ -39,4 +40,13 @@
 .note-card-footer {
   display: flex;
   gap: 1.5rem;
+}
+
+.note-card-tag {
+  padding: 0.6rem 0.85rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  background-color: var(--color-background-accent);
+  color: var(--color-foreground);
+  border-radius: inherit;
 }

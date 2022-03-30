@@ -2,6 +2,7 @@
 @import url("./pages/Auth/auth.css");
 @import url("./pages/Notes/notes.css");
 @import url("./pages/Archives/archives.css");
+@import url("./pages/Label/label.css");
 @import url("./components/Footer/footer.css");
 @import url("./components/Loader/loader.css");
 @import url("./components/Sidebar/sidebar.css");

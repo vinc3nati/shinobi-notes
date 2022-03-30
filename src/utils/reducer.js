@@ -18,6 +18,10 @@ export const reducer = (state, action) => {
       return {
         ...state,
         notes: [...action.payload.notes],
+        tags: action.payload.notes.reduce(
+          (acc, curr) => (acc.includes(curr.tag) ? acc : [...acc, curr.tag]),
+          []
+        ),
       };
 
     case ACTIONS.SetArchives:

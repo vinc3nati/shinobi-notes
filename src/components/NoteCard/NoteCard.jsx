@@ -10,7 +10,7 @@ import {
 } from "../../services/user.service";
 import { ACTIONS } from "../../utils/constants";
 
-export const NoteCard = ({ operations }) => {
+export const NoteCard = ({ operations, isTag }) => {
   const [disabled, setDisabled] = useState(false);
 
   const {
@@ -20,7 +20,7 @@ export const NoteCard = ({ operations }) => {
     state: { archives },
     dispatch,
   } = useData();
-  const { _id, title, body, createdAt, backgroundColor } = operations.note;
+  const { _id, tag, title, body, createdAt, backgroundColor } = operations.note;
   const isArchived = archives.some((item) => item._id === _id);
 
   const handleDelete = async () => {
@@ -77,6 +77,7 @@ export const NoteCard = ({ operations }) => {
 
   return (
     <div style={{ backgroundColor: backgroundColor }} className="note-card">
+      {!isTag && <span className="note-card-tag">{tag}</span>}
       <header className="note-header">
         <span className="note-card-heading"> {title} </span>
         {!isArchived && (
@@ -97,15 +98,17 @@ export const NoteCard = ({ operations }) => {
         >
           <FaTrash />
         </button>
-        <button
-          disabled={disabled}
-          className="btn warning"
-          onClick={() =>
-            isArchived ? handleArchive() : operations.setNote(operations.note)
-          }
-        >
-          {isArchived ? <FaTrashRestore /> : <FaEdit />}
-        </button>
+        {!isTag && (
+          <button
+            disabled={disabled}
+            className="btn warning"
+            onClick={() =>
+              isArchived ? handleArchive() : operations.setNote(operations.note)
+            }
+          >
+            {isArchived ? <FaTrashRestore /> : <FaEdit />}
+          </button>
+        )}
       </footer>
     </div>
   );

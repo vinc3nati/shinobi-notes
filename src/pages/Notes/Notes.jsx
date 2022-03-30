@@ -13,6 +13,7 @@ export const Notes = ({ title }) => {
     _id: "",
     title: "",
     body: "",
+    tag: "",
     backgroundColor: "#000000",
     createdAt: `${date.getDate()}/0${
       date.getMonth() + 1
@@ -63,6 +64,7 @@ export const Notes = ({ title }) => {
           <div className="input-grp">
             <input
               name="title"
+              autoComplete="off"
               value={note.title}
               onChange={handleChange}
               required
@@ -84,12 +86,23 @@ export const Notes = ({ title }) => {
         />
         {expand && (
           <footer className="note-footer">
-            <input
-              value={note.backgroundColor}
-              type="color"
-              name="backgroundColor"
-              onChange={handleChange}
-            />
+            <div className="input-container">
+              <input
+                className="input-tag"
+                type="text"
+                autoComplete="off"
+                name="tag"
+                value={note.tag}
+                placeholder="Tag"
+                onChange={handleChange}
+              />
+              <input
+                value={note.backgroundColor}
+                type="color"
+                name="backgroundColor"
+                onChange={handleChange}
+              />
+            </div>
             <button className="btn outline-warning" type="submit">
               {note._id ? "Update" : "Add"}
             </button>
