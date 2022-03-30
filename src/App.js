@@ -38,7 +38,7 @@ function App() {
           <Route path="notes" element={<Notes title="notes" />} />
           <Route path="archives" element={<Archives title="archives" />} />
           {tags.map((tag) => (
-            <Route path={`/${tag}`} element={<Label tag={tag} />} />
+            <Route key={tag} path={`/${tag}`} element={<Label tag={tag} />} />
           ))}
         </Route>
 

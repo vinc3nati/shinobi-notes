@@ -1,9 +1,5 @@
 import { useEffect } from "react";
-
-const capitalize = (str) => {
-  let newStr = [...str];
-  return newStr[0].toUpperCase() + newStr.slice(1).join("");
-};
+import { capitalize } from "../utils/capitalize";
 
 export const useDocumentTitle = (title) => {
   useEffect(() => {

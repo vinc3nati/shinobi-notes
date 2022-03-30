@@ -30,8 +30,12 @@ export const Notes = ({ title }) => {
 
   const hideNote = () => setExpand(false);
 
-  const handleChange = (e) =>
-    setNote({ ...note, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value =
+      name === "tag" ? e.target.value.toLowerCase() : e.target.value;
+    setNote({ ...note, [name]: value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
