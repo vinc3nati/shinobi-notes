@@ -46,6 +46,12 @@ export const reducer = (state, action) => {
         },
       };
 
+    case ACTIONS.ClearFilters:
+      return {
+        ...state,
+        filters: { ...initialValue.filters },
+      };
+
     default:
       return state;
   }

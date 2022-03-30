@@ -1,0 +1,32 @@
+.filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.6rem 0.85rem;
+  background-color: var(--color-background);
+}
+
+.filter-icon {
+  color: var(--color-warning);
+  cursor: pointer;
+}
+
+.filter-dropdown {
+  position: fixed;
+  top: 50px;
+  padding: 0.7rem 1rem;
+  background-color: var(--color-background);
+  box-shadow: 0 3px 5px rgb(0 0 0 / 20%);
+  border-radius: var(--border-radius-3);
+}
+
+.filter-dropdown > * {
+  margin: 0.5rem 0;
+}
+
+.filter-clear {
+  cursor: pointer;
+  width: fit-content;
+  margin-left: auto;
+  border-bottom: 1px solid var(--color-warning);
+}

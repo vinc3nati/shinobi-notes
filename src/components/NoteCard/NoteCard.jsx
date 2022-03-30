@@ -77,7 +77,7 @@ export const NoteCard = ({ operations, isTag }) => {
 
   return (
     <div style={{ backgroundColor: backgroundColor }} className="note-card">
-      {!isTag && <span className="note-card-tag">{tag}</span>}
+      {!isTag && tag && <span className="note-card-tag">{tag}</span>}
       <header className="note-header">
         <span className="note-card-heading"> {title} </span>
         {!isArchived && (
