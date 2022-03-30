@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo_2.png";
 import { FaSearch } from "react-icons/fa";
@@ -9,12 +9,9 @@ import { ACTIONS, FILTERS } from "../../utils/constants";
 import { ThemeSwitcher } from "../ThemeSwitcher/ThemeSwitcher";
 import { Account } from "../Account/Account";
 import { useShrinkSidebar } from "../../contexts/shrink-sidebar-context";
+import { Filter } from "../Filter/Filter";
 
 export const Navbar = () => {
-  const {
-    user: { user },
-    handleLogOut,
-  } = useAuth();
   const { state, dispatch } = useData();
   const { toggleShrink } = useShrinkSidebar();
 
@@ -40,13 +37,14 @@ export const Navbar = () => {
                   type: ACTIONS.ChangeFilters,
                   payload: {
                     type: FILTERS.Search,
-                    value: e.target.value,
+                    value: e.target.value.toLowerCase(),
                   },
                 })
               }
               placeholder="search"
             />
           </div>
+          <Filter />
         </div>
         <ThemeSwitcher />
         <Account />

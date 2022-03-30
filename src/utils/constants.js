@@ -3,6 +3,7 @@ const ACTIONS = {
   SetArchives: "SET_ARCHIVES",
   SetTrash: "SET_TRASH",
   ChangeFilters: "CHANGE_FILTERS",
+  ClearFilters: "CLEAR_FILTERS",
 };
 
 const FILTERS = {
@@ -10,4 +11,9 @@ const FILTERS = {
   Search: "search",
 };
 
-export { ACTIONS, FILTERS };
+const SortBY = {
+  Ascending: "Created-Recently",
+  Descending: "Lastly-Created",
+};
+
+export { ACTIONS, FILTERS, SortBY };

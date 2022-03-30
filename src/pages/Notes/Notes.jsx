@@ -5,6 +5,7 @@ import { editNotes, postNotes } from "../../services/user.service";
 import { ACTIONS } from "../../utils/constants";
 import { NoteCard } from "../../components/NoteCard/NoteCard";
 import { useDocumentTitle } from "../../hooks/DocumentTitle";
+import { useFilteredData } from "../../hooks/FilterData";
 
 export const Notes = ({ title }) => {
   useDocumentTitle(title);
@@ -18,6 +19,7 @@ export const Notes = ({ title }) => {
     createdAt: `${date.getDate()}/0${
       date.getMonth() + 1
     }/${date.getFullYear()}`,
+    timestamp: Math.round(date.getTime() / 1000),
   };
   const [note, setNote] = useState(initVal);
   const [expand, setExpand] = useState(false);
@@ -25,6 +27,7 @@ export const Notes = ({ title }) => {
     user: { token },
   } = useAuth();
   const { state, setLoader, dispatch } = useData();
+  const { sortedData } = useFilteredData();
 
   const activeNote = () => setExpand(true);
 
@@ -114,7 +117,7 @@ export const Notes = ({ title }) => {
         )}
       </form>
       <div className="note-card-container">
-        {state.notes.map((noteItem) => (
+        {sortedData.map((noteItem) => (
           <NoteCard
             key={noteItem._id}
             operations={{ note: noteItem, setNote }}

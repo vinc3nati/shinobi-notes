@@ -47,27 +47,31 @@ export const Sidebar = () => {
           <FaArchive />
           <p className={shrink ? "hide" : ""}>Archive</p>
         </NavLink>
-        {tags.map((tag) => (
-          <NavLink
-            to={`/${tag}`}
-            className={({ isActive }) =>
-              isActive ? "sidebar-link active" : "sidebar-link"
-            }
-            style={
-              shrink
-                ? {
-                    borderRadius: "50%",
-                    width: "fit-content",
-                    padding: "1.5rem",
+        {tags.length !== 0 &&
+          tags.map(
+            (tag) =>
+              tag && (
+                <NavLink
+                  to={`/${tag}`}
+                  className={({ isActive }) =>
+                    isActive ? "sidebar-link active" : "sidebar-link"
                   }
-                : null
-            }
-            end
-          >
-            <MdLabel />
-            <p className={shrink ? "hide" : ""}>{capitalize(tag)}</p>
-          </NavLink>
-        ))}
+                  style={
+                    shrink
+                      ? {
+                          borderRadius: "50%",
+                          width: "fit-content",
+                          padding: "1.5rem",
+                        }
+                      : null
+                  }
+                  end
+                >
+                  <MdLabel />
+                  <p className={shrink ? "hide" : ""}>{capitalize(tag)}</p>
+                </NavLink>
+              )
+          )}
         <NavLink
           to="/trash"
           className={({ isActive }) =>
