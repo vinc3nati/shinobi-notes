@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { useAuth } from "../../contexts";
 import { useOnClickOutside } from "../../hooks/ClickOutside";
 import { IoIosArrowDown } from "react-icons/io";
+import { capitalize } from "../../utils/capitalize";
 
 export const Account = () => {
   const [open, setOpen] = useState(false);
@@ -17,7 +18,7 @@ export const Account = () => {
   return (
     <div ref={dropdownRef} className="user" onClick={toggleDropdown}>
       <div className="account-name">
-        <span className="text-bold">{user.name.split(" ")[0]}</span>
+        <span className="text-bold">{capitalize(user.name.split(" ")[0])}</span>
         <IoIosArrowDown />
       </div>
       {open && (

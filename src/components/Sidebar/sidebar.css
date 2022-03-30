@@ -14,6 +14,7 @@
 
 .sidebar-link {
   display: flex;
+  align-items: center;
   column-gap: 1.5rem;
   padding: 1.5rem 2rem;
   font-size: 1.65rem;

@@ -12,10 +12,14 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Layout } from "./components/Layout/Layout";
 import "./App.css";
+import { Label } from "./pages/Label/Label";
 
 function App() {
   const { pathname } = useLocation();
-  const { loader } = useData();
+  const {
+    loader,
+    state: { tags },
+  } = useData();
   return (
     <>
       {loader && <Loader />}
@@ -33,6 +37,9 @@ function App() {
         >
           <Route path="notes" element={<Notes title="notes" />} />
           <Route path="archives" element={<Archives title="archives" />} />
+          {tags.map((tag) => (
+            <Route key={tag} path={`/${tag}`} element={<Label tag={tag} />} />
+          ))}
         </Route>
 
         <Route exact path="/mock" element={<Mockman />} />
