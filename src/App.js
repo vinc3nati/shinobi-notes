@@ -8,8 +8,6 @@ import { Loader } from "./components/Loader/Loader";
 import { Notes } from "./pages/Notes/Notes";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { Archives } from "./pages/Archives/Archives";
-import { Navbar } from "./components/Navbar/Navbar";
-import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Layout } from "./components/Layout/Layout";
 import "./App.css";
 import { Label } from "./pages/Label/Label";

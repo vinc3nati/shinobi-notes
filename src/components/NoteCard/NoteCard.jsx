@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaTrash, FaEdit, FaArchive, FaTrashRestore } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/auth-context";
 import { useData } from "../../contexts/data-context";
 import {
@@ -10,7 +11,7 @@ import {
 } from "../../services/user.service";
 import { ACTIONS } from "../../utils/constants";
 
-export const NoteCard = ({ operations, isTag }) => {
+export const NoteCard = ({ operations, tagOperation }) => {
   const [disabled, setDisabled] = useState(false);
 
   const {
@@ -22,6 +23,7 @@ export const NoteCard = ({ operations, isTag }) => {
   } = useData();
   const { _id, tag, title, body, createdAt, backgroundColor } = operations.note;
   const isArchived = archives.some((item) => item._id === _id);
+  let navigate = useNavigate();
 
   const handleDelete = async () => {
     setDisabled(true);
@@ -32,6 +34,9 @@ export const NoteCard = ({ operations, isTag }) => {
         payload: { notes: response.data.notes },
       });
       setDisabled(false);
+      if (tagOperation) {
+        tagOperation();
+      }
     }
   };
 
@@ -77,7 +82,7 @@ export const NoteCard = ({ operations, isTag }) => {
 
   return (
     <div style={{ backgroundColor: backgroundColor }} className="note-card">
-      {!isTag && tag && <span className="note-card-tag">{tag}</span>}
+      {!tagOperation && tag && <span className="note-card-tag">{tag}</span>}
       <header className="note-header">
         <span className="note-card-heading"> {title} </span>
         {!isArchived && (
@@ -98,7 +103,7 @@ export const NoteCard = ({ operations, isTag }) => {
         >
           <FaTrash />
         </button>
-        {!isTag && (
+        {!tagOperation && (
           <button
             disabled={disabled}
             className="btn warning"
