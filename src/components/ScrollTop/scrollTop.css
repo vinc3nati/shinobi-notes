@@ -1,0 +1,10 @@
+.scroll-btn {
+    position: fixed;
+    width: 5rem;
+    height: 5rem;
+    bottom: 2rem;
+    right: 2rem;
+    font-size: 2rem;
+    font-weight: 700;
+    border-radius: var(--border-rounded);
+}

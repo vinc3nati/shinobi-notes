@@ -11,6 +11,7 @@ import { Archives } from "./pages/Archives/Archives";
 import { Layout } from "./components/Layout/Layout";
 import "./App.css";
 import { Label } from "./pages/Label/Label";
+import { ScrollTop } from "./components/ScrollTop/ScrollTop";
 
 function App() {
   const { pathname } = useLocation();
@@ -42,6 +43,7 @@ function App() {
 
         <Route exact path="/mock" element={<Mockman />} />
       </Routes>
+      <ScrollTop />
       {pathname !== "/login" && pathname !== "/signup" && <Footer />}
     </>
   );
