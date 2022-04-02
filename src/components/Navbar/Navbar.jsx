@@ -17,12 +17,14 @@ export const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <BiMenuAltLeft className="menu" onClick={toggleShrink} />
       <div className="main">
-        <div className="logo">
-          <Link to="/">
-            <img src={logo} alt="logo" className="img img-responsive" />
-          </Link>
+        <div className="header">
+          <BiMenuAltLeft className="menu" onClick={toggleShrink} />
+          <div className="logo">
+            <Link to="/">
+              <img src={logo} alt="logo" className="img img-responsive" />
+            </Link>
+          </div>
         </div>
         <div className="search-bar">
           <button type="submit" className="btn tertiary">

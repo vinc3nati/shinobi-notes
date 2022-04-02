@@ -31,3 +31,21 @@
   background-color: var(--color-background);
   color: var(--color-foreground);
 }
+
+.navbar .header {
+  display: flex;
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar .main {
+    flex-wrap: wrap;
+  }
+  .main > .search-bar {
+    order: 1;
+    display: flex;
+    text-align: center;
+    top: 40px;
+    left: 0;
+    width: 100%;
+  }
+}

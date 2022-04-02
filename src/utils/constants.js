@@ -12,8 +12,8 @@ const FILTERS = {
 };
 
 const SortBY = {
-  Ascending: "Created-Recently",
-  Descending: "Lastly-Created",
+  Ascending: "Latest-First",
+  Descending: "Oldest-First",
 };
 
 export { ACTIONS, FILTERS, SortBY };

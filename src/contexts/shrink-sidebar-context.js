@@ -1,9 +1,15 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, createContext, useContext, useEffect } from "react";
+import { useWindowSize } from "../hooks/WindowSize";
 
 const ShrinkSidebarContext = createContext();
 
 const ShrinkSidebarProvider = ({ children }) => {
+  const { width } = useWindowSize();
   const [shrink, setShrink] = useState(false);
+  useEffect(() => {
+    if (width <= 768) setShrink(true);
+    else setShrink(false);
+  }, [width]);
 
   const toggleShrink = () => setShrink((prev) => !prev);
 

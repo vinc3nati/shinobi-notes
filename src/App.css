@@ -86,3 +86,16 @@ body {
   max-width: calc(100% - 280px);
   margin-left: auto;
 }
+
+@media only screen and (max-width: 768px) {
+  .main-notes {
+    padding: 0.6rem;
+    max-width: calc(100% - 50px);
+  }
+  .notes-container {
+    padding: 0;
+  }
+  .radio-btn {
+    border: 3px solid var(--color-warning);
+  }
+}
