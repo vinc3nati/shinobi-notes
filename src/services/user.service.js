@@ -6,6 +6,8 @@ const API = {
   NOTES: "/api/notes",
   ARCHIVE_NOTES: "/api/archives",
   POST_ARCHIVE_NOTES: "/api/notes/archives",
+  TRASH: "/api/trash",
+  POST_TRASH: "/api/notes/trash",
 };
 
 export const loginUser = async ({ email, password }) =>
@@ -92,3 +94,39 @@ export const deleteArchives = async ({ notesId, token }) =>
       authorization: token,
     },
   });
+
+export const getTrash = async ({ token }) =>
+  await axios.get(API.TRASH, {
+    headers: {
+      authorization: token,
+    },
+  });
+
+export const postTrash = async ({ notesId, note, token }) =>
+  await axios.post(
+    `${API.POST_TRASH}/${notesId}`,
+    { note },
+    {
+      headers: {
+        authorization: token,
+      },
+    }
+  );
+
+export const deleteTrash = async ({ notesId, token }) =>
+  await axios.delete(`${API.TRASH}/delete/${notesId}`, {
+    headers: {
+      authorization: token,
+    },
+  });
+
+export const restoreTrash = async ({ notesId, note, token }) =>
+  await axios.post(
+    `${API.TRASH}/restore/${notesId}`,
+    { note },
+    {
+      headers: {
+        authorization: token,
+      },
+    }
+  );

@@ -12,6 +12,8 @@ import { Layout } from "./components/Layout/Layout";
 import "./App.css";
 import { Label } from "./pages/Label/Label";
 import { ScrollTop } from "./components/ScrollTop/ScrollTop";
+import { Trash } from "./pages/Trash/Trash";
+import { EditModal } from "./components/EditModal/EditModal";
 
 function App() {
   const { pathname } = useLocation();
@@ -35,10 +37,12 @@ function App() {
           }
         >
           <Route path="notes" element={<Notes title="notes" />} />
+          <Route path="notes/:noteId" element={<EditModal />} />
           <Route path="archives" element={<Archives title="archives" />} />
           {tags.map((tag) => (
             <Route key={tag} path={`/${tag}`} element={<Label tag={tag} />} />
           ))}
+          <Route path="trash" element={<Trash title="trash" />} />
         </Route>
 
         <Route exact path="/mock" element={<Mockman />} />

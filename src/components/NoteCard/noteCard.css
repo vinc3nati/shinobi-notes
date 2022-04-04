@@ -23,12 +23,12 @@
   align-items: center;
 }
 
-.archive {
+.side-icon {
   font-size: 1.6rem;
   cursor: pointer;
 }
 
-.archive:hover {
+.side-icon:hover {
   opacity: 0.8;
 }
 
