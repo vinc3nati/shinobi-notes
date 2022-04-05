@@ -64,4 +64,12 @@
     cursor: pointer;
   }
 
-  
+  .input-dropdown {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    outline: none;
+    border-radius: var(--border-radius-3);
+}
