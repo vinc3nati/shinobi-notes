@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import GIF from "../../assets/warning.gif";
 
 export const ErrorPage = () => {
   const navigate = useNavigate();
