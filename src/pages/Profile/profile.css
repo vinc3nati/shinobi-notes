@@ -3,7 +3,6 @@
     width: 100%;
     max-width: 500px;
     display: flex;
-    flex-direction: column;
     margin: 5rem auto;
     gap: 1.5rem;
     font-size: 2rem;
@@ -11,6 +10,12 @@
     border-bottom-left-radius: var(--border-radius-3);
     border-bottom-right-radius: var(--border-radius-3);
     box-shadow: 0 3px 5px rgb(0 0 0 / 20%);
+}
+
+.profile-content {
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: column;
 }
 
 .profile-section {
