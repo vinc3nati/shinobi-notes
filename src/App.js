@@ -14,6 +14,7 @@ import { Label } from "./pages/Label/Label";
 import { ScrollTop } from "./components/ScrollTop/ScrollTop";
 import { Trash } from "./pages/Trash/Trash";
 import { EditModal } from "./components/EditModal/EditModal";
+import { Profile } from "./pages/Profile/Profile";
 
 function App() {
   const { pathname } = useLocation();
@@ -42,6 +43,7 @@ function App() {
           {tags.map((tag) => (
             <Route key={tag} path={`/${tag}`} element={<Label tag={tag} />} />
           ))}
+          <Route path="profile" element={<Profile title="profile" />} />
           <Route path="trash" element={<Trash title="trash" />} />
         </Route>
 
