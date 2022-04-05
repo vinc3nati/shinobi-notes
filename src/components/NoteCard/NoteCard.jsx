@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { FaTrash, FaEdit, FaArchive, FaTrashRestore } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { FaTrash, FaEdit, FaArchive } from "react-icons/fa";
+import { MdRestore } from "react-icons/md";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/auth-context";
 import { useData } from "../../contexts/data-context";
 import {
@@ -8,10 +9,13 @@ import {
   postArchives,
   deleteNotes,
   deleteArchives,
+  deleteTrash,
+  restoreTrash,
+  postTrash,
 } from "../../services/user.service";
 import { ACTIONS } from "../../utils/constants";
 
-export const NoteCard = ({ operations, tagOperation }) => {
+export const NoteCard = ({ operations, tagOperation, isTrash }) => {
   const [disabled, setDisabled] = useState(false);
 
   const {
@@ -23,15 +27,42 @@ export const NoteCard = ({ operations, tagOperation }) => {
   } = useData();
   const { _id, tag, title, body, createdAt, backgroundColor } = operations.note;
   const isArchived = archives.some((item) => item._id === _id);
-  let navigate = useNavigate();
-
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const handleDelete = async () => {
     setDisabled(true);
-    const response = await deleteNotes({ notesId: _id, token });
-    if (response.data.notes) {
+    if (!isTrash) {
+      if (isArchived) {
+        const response = await deleteArchives({ notesId: _id, token });
+        if (response.data.archives) {
+          dispatch({
+            type: ACTIONS.SetArchives,
+            payload: {
+              archives: response.data.archives,
+            },
+          });
+        }
+      } else {
+        const response = await postTrash({
+          notesId: _id,
+          note: operations.note,
+          token,
+        });
+        if (response.data.trash) {
+          dispatch({
+            type: ACTIONS.SetTrash,
+            payload: { trash: response.data.trash, notes: response.data.notes },
+          });
+        }
+      }
+      setDisabled(false);
+      return;
+    }
+    const response = await deleteTrash({ notesId: _id, token });
+    if (response.data.trash) {
       dispatch({
-        type: ACTIONS.SetNotes,
-        payload: { notes: response.data.notes },
+        type: ACTIONS.SetTrash,
+        payload: { trash: response.data.trash },
       });
       setDisabled(false);
       if (tagOperation) {
@@ -66,17 +97,25 @@ export const NoteCard = ({ operations, tagOperation }) => {
     }
   };
 
-  const handleDeleteArchives = async () => {
+  const handleRestoreTrash = async () => {
     setDisabled(true);
-    const response = await deleteArchives({ notesId: _id, token });
-    if (response.data.archives) {
+    const response = await restoreTrash({
+      notesId: _id,
+      token,
+      note: operations.note,
+    });
+    if (response.data.trash) {
       dispatch({
-        type: ACTIONS.SetArchives,
-        payload: {
-          archives: response.data.archives,
-        },
+        type: ACTIONS.SetTrash,
+        payload: { trash: response.data.trash, notes: response.data.notes },
       });
-      setDisabled(false);
+    }
+    setDisabled(false);
+  };
+
+  const handleEdit = () => {
+    if (pathname === "/notes") {
+      navigate(`/notes/${_id}`);
     }
   };
 
@@ -85,33 +124,41 @@ export const NoteCard = ({ operations, tagOperation }) => {
       {!tagOperation && tag && <span className="note-card-tag">{tag}</span>}
       <header className="note-header">
         <span className="note-card-heading"> {title} </span>
-        {!isArchived && (
-          <FaArchive
-            className="archive"
-            style={disabled && { userSelect: "none", pointerEvents: "none" }}
-            onClick={() => handleArchive()}
-          />
-        )}
+        {!isArchived &&
+          (!isTrash ? (
+            <FaArchive
+              className="side-icon"
+              style={disabled && { userSelect: "none", pointerEvents: "none" }}
+              onClick={handleArchive}
+            />
+          ) : (
+            <MdRestore
+              className="side-icon"
+              style={disabled && { userSelect: "none", pointerEvents: "none" }}
+              onClick={handleRestoreTrash}
+            />
+          ))}
       </header>
-      <p className="note-card-body">{body}</p>
+      <div
+        className="note-card-body"
+        dangerouslySetInnerHTML={{ __html: body }}
+      />
       <p className="note-card-time">Created At: {createdAt}</p>
       <footer className="note-card-footer">
         <button
           className="btn outline-error"
           disabled={disabled}
-          onClick={() => (isArchived ? handleDeleteArchives() : handleDelete())}
+          onClick={handleDelete}
         >
           <FaTrash />
         </button>
-        {!tagOperation && (
+        {!tagOperation && !isTrash && (
           <button
             disabled={disabled}
             className="btn warning"
-            onClick={() =>
-              isArchived ? handleArchive() : operations.setNote(operations.note)
-            }
+            onClick={() => (isArchived ? handleArchive() : handleEdit())}
           >
-            {isArchived ? <FaTrashRestore /> : <FaEdit />}
+            {isArchived ? <MdRestore /> : <FaEdit />}
           </button>
         )}
       </footer>

@@ -35,6 +35,14 @@ export const reducer = (state, action) => {
       return {
         ...state,
         trash: [...action.payload.trash],
+        notes: action.payload.notes ? [...action.payload.notes] : state.notes,
+        tags: action.payload.notes
+          ? action.payload.notes.reduce(
+              (acc, curr) =>
+                acc.includes(curr.tag) ? acc : [...acc, curr.tag],
+              []
+            )
+          : state.tags,
       };
 
     case ACTIONS.ChangeFilters:

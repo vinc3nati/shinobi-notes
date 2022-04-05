@@ -1,0 +1,67 @@
+.input-tag {
+    outline: none;
+    padding: 0.6rem 0.85rem;
+    border: 1px solid var(--color-foreground);
+    border-radius: var(--border-radius-3);
+  }
+  
+  .input-tag:focus {
+    box-shadow: 0 0 0 1px var(--color-warning);
+  }
+
+  .input-container {
+    display: flex;
+    column-gap: 1rem;
+    align-items: center;
+  }
+
+  .notes-form {
+    max-width: 500px;
+    width: 100%;
+    margin: 2rem auto;
+    padding: 1rem 1.5rem;
+    background-color: var(--color-background);
+    box-shadow: 0 3px 5px rgb(0 0 0 / 20%);
+    border-radius: var(--border-radius-3);
+  }
+  
+  .notes-form input[type="text"],
+  .notes-form .input-area {
+    color: var(--color-foreground);
+    background-color: var(--color-background);
+  }
+  
+  .notes-form > .input-grp {
+    width: 100%;
+  }
+  
+  .note-footer {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .input-grp>.input-title {
+    border: none ;
+    box-shadow: none;
+  }
+
+  .input-grp>.input-title:focus {
+    box-shadow: none;
+  }
+
+  .note-header {
+    display: flex;
+  }
+
+  .note-header > .input-grp {
+    flex-grow: 1;
+  }
+
+  .pin-icon {
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  
