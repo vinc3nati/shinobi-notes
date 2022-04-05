@@ -3,6 +3,7 @@ import { useAuth } from "../../contexts";
 import { useOnClickOutside } from "../../hooks/ClickOutside";
 import { IoIosArrowDown } from "react-icons/io";
 import { capitalize } from "../../utils/capitalize";
+import { useNavigate } from "react-router-dom";
 
 export const Account = () => {
   const [open, setOpen] = useState(false);
@@ -12,6 +13,7 @@ export const Account = () => {
     handleLogOut,
   } = useAuth();
   const toggleDropdown = () => setOpen((prev) => !prev);
+  const navigate = useNavigate();
 
   useOnClickOutside(dropdownRef, () => setOpen(false));
 
@@ -24,7 +26,7 @@ export const Account = () => {
       {open && (
         <div className="account-dropdown text-center">
           <ul className="list">
-            <li>Account</li>
+            <li onClick={() => navigate("/profile")}>Account</li>
             <li onClick={handleLogOut}>Sign Out</li>
           </ul>
         </div>

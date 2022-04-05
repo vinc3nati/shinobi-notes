@@ -15,7 +15,6 @@ export const useFilteredData = () => {
 
   const searchResult = filterBySearch(notes, search);
   const prioritizedData = sortByPriority(searchResult, priority);
-  console.log(prioritizedData);
   const sortedData = sortNotes(prioritizedData, sortBy);
   return { sortedData };
 };
