@@ -114,17 +114,6 @@ export const NoteEditor = ({ id }) => {
         onFocus={activeNote}
         isExpanded={expand}
       />
-      {/* <textarea
-    className="input-area"
-    name="body"
-    required
-    autoComplete="off"
-    value={note.body}
-    onChange={handleChange}
-    placeholder={expand ? "Description" : "Click to add a note"}
-    onClick={activeNote}
-    onDoubleClick={hideNote}
-  /> */}
       {expand && (
         <footer className="note-footer">
           <div className="input-container">
