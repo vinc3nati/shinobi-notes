@@ -1,17 +1,11 @@
 import React from "react";
 import { useAuth } from "../../contexts";
 import UserImage from "../../assets/images/dummy.jpg";
+import { useDocumentTitle } from "../../hooks/DocumentTitle";
+import { convertToProperDate } from "../../utils/localDate";
 
-const convertToProperDate = (date) => {
-  const localDate = new Date(date);
-  return `${
-    localDate.getDate() % 10 === localDate.getDate()
-      ? "0" + localDate.getDate()
-      : localDate.getDate()
-  }/0${localDate.getMonth() + 1}/${localDate.getFullYear()}`;
-};
-
-export const Profile = () => {
+export const Profile = ({ title }) => {
+  useDocumentTitle(title);
   const {
     user: { user },
     handleLogOut,
