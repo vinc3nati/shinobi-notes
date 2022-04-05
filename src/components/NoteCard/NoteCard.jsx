@@ -25,7 +25,8 @@ export const NoteCard = ({ operations, tagOperation, isTrash }) => {
     state: { archives },
     dispatch,
   } = useData();
-  const { _id, tag, title, body, createdAt, backgroundColor } = operations.note;
+  const { _id, tag, title, body, createdAt, backgroundColor, priority } =
+    operations.note;
   const isArchived = archives.some((item) => item._id === _id);
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -121,7 +122,10 @@ export const NoteCard = ({ operations, tagOperation, isTrash }) => {
 
   return (
     <div style={{ backgroundColor: backgroundColor }} className="note-card">
-      {!tagOperation && tag && <span className="note-card-tag">{tag}</span>}
+      <div className="note-filters">
+        {!tagOperation && tag && <span className="note-card-tag">{tag}</span>}
+        <span className="note-priority">{priority}</span>
+      </div>
       <header className="note-header">
         <span className="note-card-heading"> {title} </span>
         {!isArchived &&

@@ -9,6 +9,7 @@ const ACTIONS = {
 const FILTERS = {
   SortBy: "sortBy",
   Search: "search",
+  Priority: "priority",
 };
 
 const SortBY = {
@@ -16,4 +17,10 @@ const SortBY = {
   Descending: "Oldest-First",
 };
 
-export { ACTIONS, FILTERS, SortBY };
+const Priority = {
+  PriorityLow: "Low",
+  PriorityMedium: "Medium",
+  PriorityHigh: "High",
+};
+
+export { ACTIONS, FILTERS, SortBY, Priority };

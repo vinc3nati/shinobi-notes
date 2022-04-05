@@ -13,6 +13,7 @@ export const NoteEditor = ({ id }) => {
     title: "",
     body: "",
     tag: "",
+    priority: "Low",
     backgroundColor: "#000000",
     isPinned: false,
     createdAt: `${date.getDate()}/0${
@@ -70,6 +71,7 @@ export const NoteEditor = ({ id }) => {
       title: "",
       tag: "",
       isPinned: false,
+      priority: "Low",
       timestamp: date.getTime(),
     }));
     setNote((prev) => ({ ...prev, body: "" }));
@@ -132,6 +134,18 @@ export const NoteEditor = ({ id }) => {
               name="backgroundColor"
               onChange={handleChange}
             />
+            <select
+              onChange={handleChange}
+              value={note.priority}
+              name="priority"
+              className="input-dropdown"
+            >
+              <option value="Low" selected>
+                Low
+              </option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
           </div>
           <button className="btn outline-warning" type="submit">
             {id ? "Update" : "Add"}

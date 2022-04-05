@@ -9,6 +9,7 @@ export const initialValue = {
   filters: {
     sortBy: "",
     search: "",
+    priority: "",
   },
 };
 
