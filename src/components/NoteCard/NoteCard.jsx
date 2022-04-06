@@ -116,7 +116,7 @@ export const NoteCard = ({ operations, tagOperation, isTrash }) => {
 
   const handleEdit = () => {
     if (pathname === "/notes") {
-      navigate(`/notes/${_id}`);
+      navigate(`/note/${_id}`);
     }
   };
 
