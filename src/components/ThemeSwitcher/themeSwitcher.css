@@ -47,3 +47,9 @@
   font-size: 3rem;
   color: var(--color-foreground);
 }
+
+@media only screen and (max-width: 600px) {
+  .theme-icon {
+    display: none;
+  }
+}

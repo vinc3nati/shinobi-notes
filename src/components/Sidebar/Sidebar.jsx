@@ -3,7 +3,6 @@ import { FaLightbulb, FaArchive, FaTrash } from "react-icons/fa";
 import { MdLabel } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { useData, useShrinkSidebar } from "../../contexts";
-import { capitalize } from "../../utils/capitalize";
 
 export const Sidebar = () => {
   const { shrink } = useShrinkSidebar();
@@ -52,6 +51,7 @@ export const Sidebar = () => {
             (tag) =>
               tag && (
                 <NavLink
+                  key={tag}
                   to={`/${tag}`}
                   className={({ isActive }) =>
                     isActive ? "sidebar-link active" : "sidebar-link"
@@ -68,7 +68,7 @@ export const Sidebar = () => {
                   end
                 >
                   <MdLabel />
-                  <p className={shrink ? "hide" : ""}>{capitalize(tag)}</p>
+                  <p className={shrink ? "hide" : ""}>{tag}</p>
                 </NavLink>
               )
           )}

@@ -19,10 +19,10 @@ export const reducer = (state, action) => {
       return {
         ...state,
         notes: [...action.payload.notes],
-        tags: action.payload.notes.reduce(
-          (acc, curr) => (acc.includes(curr.tag) ? acc : [...acc, curr.tag]),
-          []
-        ),
+        // tags: action.payload.notes.reduce(
+        //   (acc, curr) => (acc.includes(curr.tag) ? acc : [...acc, curr.tag]),
+        //   []
+        // ),
       };
 
     case ACTIONS.SetArchives:
@@ -37,13 +37,13 @@ export const reducer = (state, action) => {
         ...state,
         trash: [...action.payload.trash],
         notes: action.payload.notes ? [...action.payload.notes] : state.notes,
-        tags: action.payload.notes
-          ? action.payload.notes.reduce(
-              (acc, curr) =>
-                acc.includes(curr.tag) ? acc : [...acc, curr.tag],
-              []
-            )
-          : state.tags,
+        // tags: action.payload.notes
+        //   ? action.payload.notes.reduce(
+        //       (acc, curr) =>
+        //         acc.includes(curr.tag) ? acc : [...acc, curr.tag],
+        //       []
+        //     )
+        //   : state.tags,
       };
 
     case ACTIONS.ChangeFilters:
@@ -53,6 +53,12 @@ export const reducer = (state, action) => {
           ...state.filters,
           [action.payload.type]: action.payload.value,
         },
+      };
+
+    case ACTIONS.SetTags:
+      return {
+        ...state,
+        tags: [...new Set(state.tags.concat(action.payload.tags))],
       };
 
     case ACTIONS.ClearFilters:

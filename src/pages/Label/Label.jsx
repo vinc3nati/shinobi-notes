@@ -9,7 +9,7 @@ export const Label = ({ tag }) => {
   const {
     state: { notes },
   } = useData();
-  const labelledNotes = notes.filter((item) => item.tag === tag);
+  const labelledNotes = notes.filter((item) => item.tag.includes(tag));
   let navigate = useNavigate();
   const handleTagDelete = () => {
     if (labelledNotes.length === 1) {
@@ -19,13 +19,22 @@ export const Label = ({ tag }) => {
 
   return (
     <div className="label-container">
-      {labelledNotes.map((note) => (
-        <NoteCard
-          key={note._id}
-          operations={{ note }}
-          tagOperation={handleTagDelete}
-        />
-      ))}
+      {labelledNotes &&
+        labelledNotes.map((note) => (
+          <NoteCard
+            key={note._id}
+            operations={{ note }}
+            tagOperation={handleTagDelete}
+          />
+        ))}
+      {!labelledNotes.length && (
+        <div className="text-center">
+          <h2>Nothing in {tag}, try adding some notes!</h2>
+          <button className="btn warning" onClick={() => navigate("/notes")}>
+            add notes
+          </button>
+        </div>
+      )}
     </div>
   );
 };

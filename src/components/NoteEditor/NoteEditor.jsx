@@ -5,6 +5,7 @@ import { useAuth, useData } from "../../contexts";
 import { editNotes, postNotes } from "../../services/user.service";
 import { ACTIONS } from "../../utils/constants";
 import { QuillEditor } from "../QuillEditor/QuillEditor";
+import { TagInputs } from "../TagInputs/TagInputs";
 
 export const NoteEditor = ({ id }) => {
   const date = new Date();
@@ -12,7 +13,7 @@ export const NoteEditor = ({ id }) => {
     _id: "",
     title: "",
     body: "",
-    tag: "",
+    tag: [],
     priority: "Low",
     backgroundColor: "#000000",
     isPinned: false,
@@ -25,7 +26,7 @@ export const NoteEditor = ({ id }) => {
     user: { token },
   } = useAuth();
   const {
-    state: { notes },
+    state: { notes, tags },
     setLoader,
     dispatch,
   } = useData();
@@ -43,6 +44,17 @@ export const NoteEditor = ({ id }) => {
     const value =
       name === "tag" ? e.target.value.toLowerCase() : e.target.value;
     setNote({ ...note, [name]: value });
+  };
+
+  const addTag = (e, tag) => {
+    if (e.target.checked) {
+      setNote((prev) => ({ ...prev, tag: prev.tag.concat(tag) }));
+    } else {
+      setNote((prev) => ({
+        ...prev,
+        tag: prev.tag.filter((tg) => tg !== tag),
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -68,8 +80,9 @@ export const NoteEditor = ({ id }) => {
     }
     setNote((prev) => ({
       ...prev,
+      backgroundColor: "#000000",
       title: "",
-      tag: "",
+      tag: [],
       isPinned: false,
       priority: "Low",
       timestamp: date.getTime(),
@@ -92,7 +105,6 @@ export const NoteEditor = ({ id }) => {
               autoComplete="off"
               value={note.title}
               onChange={(e) => {
-                console.log(note.title);
                 handleChange(e);
               }}
               required
@@ -117,40 +129,42 @@ export const NoteEditor = ({ id }) => {
         isExpanded={expand}
       />
       {expand && (
-        <footer className="note-footer">
-          <div className="input-container">
-            <input
-              className="input-tag"
-              type="text"
-              autoComplete="off"
-              name="tag"
-              value={note.tag}
-              placeholder="Tag"
-              onChange={handleChange}
-            />
-            <input
-              value={note.backgroundColor}
-              type="color"
-              name="backgroundColor"
-              onChange={handleChange}
-            />
-            <select
-              onChange={handleChange}
-              value={note.priority}
-              name="priority"
-              className="input-dropdown"
-            >
-              <option value="Low" selected>
-                Low
-              </option>
-              <option value="Medium">Medium</option>
-              <option value="High">High</option>
-            </select>
+        <>
+          <div className="tag-chip-container">
+            {note.tag &&
+              note.tag.map((item) => (
+                <div key={item} className="tag-chip">
+                  {item}
+                </div>
+              ))}
           </div>
-          <button className="btn outline-warning" type="submit">
-            {id ? "Update" : "Add"}
-          </button>
-        </footer>
+          <footer className="note-footer">
+            <div className="input-container">
+              <TagInputs handleChange={addTag} tag={note.tag} />
+              <input
+                value={note.backgroundColor}
+                type="color"
+                name="backgroundColor"
+                onChange={handleChange}
+              />
+              <select
+                onChange={handleChange}
+                value={note.priority}
+                name="priority"
+                className="input-dropdown"
+              >
+                <option value="Low" selected>
+                  Low
+                </option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+            <button className="btn outline-warning" type="submit">
+              {id ? "Update" : "Add"}
+            </button>
+          </footer>
+        </>
       )}
     </form>
   );
