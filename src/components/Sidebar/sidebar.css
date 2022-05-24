@@ -33,7 +33,7 @@
 }
 
 .sidebar-link:not(.active):hover {
-  background-color: var(--color-grey-dark);
+  background-color: var(--color-background-accent);
 }
 
 .hide {
