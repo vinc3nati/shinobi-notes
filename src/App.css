@@ -18,19 +18,40 @@
 @import url("./components/QuillEditor/quillEditor.css");
 @import url("./components/NoteEditor/noteEditor.css");
 @import url("./components/EditModal/editModal.css");
+@import url("./components/ColorPalette/colorPalette.css");
 
 .light-theme {
   --color-background: #f4faff;
   --color-foreground: #333;
   --color-background-accent: #e9e9e9;
+  --color-background-accent-two: #afafaf;
+  --color-background-accent-three: #727272;
   --color-background-transparent: #ffffff80;
+
+  --color-note-1: #ffab91;
+  --color-note-2: #ffcc80;
+  --color-note-3: #e6ee9b;
+  --color-note-4: #80deea;
+  --color-note-5: #cf93d9;
+  --color-note-6: #f48fb1;
+  --color-note-7: #80cbc4;
 }
 
 .dark-theme {
   --color-background: #333;
   --color-foreground: #f4faff;
   --color-background-accent: #3b3b3b;
+  --color-background-accent-two: #b1b1b1;
+  --color-background-accent-three: #ebebeb;
   --color-background-transparent: #25252580;
+
+  --color-note-1: #714c40;
+  --color-note-2: #5e4b2f;
+  --color-note-3: #555839;
+  --color-note-4: #2f5256;
+  --color-note-5: #5b415f;
+  --color-note-6: #6c3f4e;
+  --color-note-7: #395956;
 }
 
 body {

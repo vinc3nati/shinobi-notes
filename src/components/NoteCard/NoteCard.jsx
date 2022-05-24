@@ -121,7 +121,7 @@ export const NoteCard = ({ operations, tagOperation, isTrash }) => {
   };
 
   return (
-    <div style={{ backgroundColor: backgroundColor }} className="note-card">
+    <div className={`note-card ${backgroundColor}`}>
       <div className="note-filters">
         <span className="note-priority">{priority}</span>
       </div>

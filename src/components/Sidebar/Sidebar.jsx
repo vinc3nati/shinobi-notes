@@ -10,7 +10,7 @@ export const Sidebar = () => {
     state: { tags },
   } = useData();
   return (
-    <aside className="sidebar" style={{ maxWidth: shrink ? "50px" : "" }}>
+    <aside className="sidebar" style={{ maxWidth: shrink ? "7rem" : "" }}>
       <ul className={shrink ? "sidebar-list m-1" : "sidebar-list"}>
         <NavLink
           to="/notes"

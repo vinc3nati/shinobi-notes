@@ -6,6 +6,7 @@ import { editNotes, postNotes } from "../../services/user.service";
 import { ACTIONS } from "../../utils/constants";
 import { QuillEditor } from "../QuillEditor/QuillEditor";
 import { TagInputs } from "../TagInputs/TagInputs";
+import { ColorPalette } from "../ColorPalette/ColorPalette";
 
 export const NoteEditor = ({ id }) => {
   const date = new Date();
@@ -15,7 +16,7 @@ export const NoteEditor = ({ id }) => {
     body: "",
     tag: [],
     priority: "Low",
-    backgroundColor: "#000000",
+    backgroundColor: "color-note-bg",
     isPinned: false,
     createdAt: `${date.getDate()}/0${
       date.getMonth() + 1
@@ -26,7 +27,7 @@ export const NoteEditor = ({ id }) => {
     user: { token },
   } = useAuth();
   const {
-    state: { notes, tags },
+    state: { notes },
     setLoader,
     dispatch,
   } = useData();
@@ -80,7 +81,7 @@ export const NoteEditor = ({ id }) => {
     }
     setNote((prev) => ({
       ...prev,
-      backgroundColor: "#000000",
+      backgroundColor: "color-note-bg",
       title: "",
       tag: [],
       isPinned: false,
@@ -92,7 +93,7 @@ export const NoteEditor = ({ id }) => {
   };
   return (
     <form
-      className="notes-form"
+      className={`notes-form ${note.backgroundColor}`}
       onSubmit={handleSubmit}
       onDoubleClick={hideNote}
     >
@@ -140,13 +141,13 @@ export const NoteEditor = ({ id }) => {
           </div>
           <footer className="note-footer">
             <div className="input-container">
-              <TagInputs handleChange={addTag} tag={note.tag} />
-              <input
-                value={note.backgroundColor}
-                type="color"
-                name="backgroundColor"
-                onChange={handleChange}
+              <ColorPalette
+                color={note.backgroundColor}
+                changeColor={(color) =>
+                  setNote((prev) => ({ ...prev, backgroundColor: color }))
+                }
               />
+              <TagInputs handleChange={addTag} tag={note.tag} />
               <select
                 onChange={handleChange}
                 value={note.priority}
@@ -160,7 +161,7 @@ export const NoteEditor = ({ id }) => {
                 <option value="High">High</option>
               </select>
             </div>
-            <button className="btn outline-warning" type="submit">
+            <button className="btn warning" type="submit">
               {id ? "Update" : "Add"}
             </button>
           </footer>
