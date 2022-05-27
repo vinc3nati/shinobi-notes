@@ -42,7 +42,11 @@ function App() {
           <Route path="note/:noteId" element={<EditModal />} />
           <Route path="archives" element={<Archives title="archives" />} />
           {tags.map((tag) => (
-            <Route key={tag} path={`/${tag}`} element={<Label tag={tag} />} />
+            <Route
+              key={tag}
+              path={`/${encodeURIComponent(tag)}`}
+              element={<Label tag={tag} />}
+            />
           ))}
           <Route path="profile" element={<Profile title="profile" />} />
           <Route path="trash" element={<Trash title="trash" />} />

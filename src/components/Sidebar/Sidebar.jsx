@@ -1,7 +1,7 @@
 import React from "react";
 import { FaLightbulb, FaArchive, FaTrash } from "react-icons/fa";
 import { MdLabel } from "react-icons/md";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useData, useShrinkSidebar } from "../../contexts";
 
 export const Sidebar = () => {
@@ -9,6 +9,7 @@ export const Sidebar = () => {
   const {
     state: { tags },
   } = useData();
+
   return (
     <aside className="sidebar" style={{ maxWidth: shrink ? "7rem" : "" }}>
       <ul className={shrink ? "sidebar-list m-1" : "sidebar-list"}>
@@ -52,7 +53,7 @@ export const Sidebar = () => {
               tag && (
                 <NavLink
                   key={tag}
-                  to={`/${tag}`}
+                  to={`/${encodeURIComponent(tag)}`}
                   className={({ isActive }) =>
                     isActive ? "sidebar-link active" : "sidebar-link"
                   }
