@@ -5,6 +5,8 @@ import { useAuth, useData } from "../../contexts";
 import { editNotes, postNotes } from "../../services/user.service";
 import { ACTIONS } from "../../utils/constants";
 import { QuillEditor } from "../QuillEditor/QuillEditor";
+import { TagInputs } from "../TagInputs/TagInputs";
+import { ColorPalette } from "../ColorPalette/ColorPalette";
 
 export const NoteEditor = ({ id }) => {
   const date = new Date();
@@ -12,9 +14,9 @@ export const NoteEditor = ({ id }) => {
     _id: "",
     title: "",
     body: "",
-    tag: "",
+    tag: [],
     priority: "Low",
-    backgroundColor: "#000000",
+    backgroundColor: "color-note-bg",
     isPinned: false,
     createdAt: `${date.getDate()}/0${
       date.getMonth() + 1
@@ -45,6 +47,17 @@ export const NoteEditor = ({ id }) => {
     setNote({ ...note, [name]: value });
   };
 
+  const addTag = (e, tag) => {
+    if (e.target.checked) {
+      setNote((prev) => ({ ...prev, tag: prev.tag.concat(tag) }));
+    } else {
+      setNote((prev) => ({
+        ...prev,
+        tag: prev.tag.filter((tg) => tg !== tag),
+      }));
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoader(true);
@@ -68,8 +81,9 @@ export const NoteEditor = ({ id }) => {
     }
     setNote((prev) => ({
       ...prev,
+      backgroundColor: "color-note-bg",
       title: "",
-      tag: "",
+      tag: [],
       isPinned: false,
       priority: "Low",
       timestamp: date.getTime(),
@@ -79,7 +93,7 @@ export const NoteEditor = ({ id }) => {
   };
   return (
     <form
-      className="notes-form"
+      className={`notes-form ${note.backgroundColor}`}
       onSubmit={handleSubmit}
       onDoubleClick={hideNote}
     >
@@ -92,7 +106,6 @@ export const NoteEditor = ({ id }) => {
               autoComplete="off"
               value={note.title}
               onChange={(e) => {
-                console.log(note.title);
                 handleChange(e);
               }}
               required
@@ -117,40 +130,42 @@ export const NoteEditor = ({ id }) => {
         isExpanded={expand}
       />
       {expand && (
-        <footer className="note-footer">
-          <div className="input-container">
-            <input
-              className="input-tag"
-              type="text"
-              autoComplete="off"
-              name="tag"
-              value={note.tag}
-              placeholder="Tag"
-              onChange={handleChange}
-            />
-            <input
-              value={note.backgroundColor}
-              type="color"
-              name="backgroundColor"
-              onChange={handleChange}
-            />
-            <select
-              onChange={handleChange}
-              value={note.priority}
-              name="priority"
-              className="input-dropdown"
-            >
-              <option value="Low" selected>
-                Low
-              </option>
-              <option value="Medium">Medium</option>
-              <option value="High">High</option>
-            </select>
+        <>
+          <div className="tag-chip-container">
+            {note.tag &&
+              note.tag.map((item) => (
+                <div key={item} className="tag-chip">
+                  {item}
+                </div>
+              ))}
           </div>
-          <button className="btn outline-warning" type="submit">
-            {id ? "Update" : "Add"}
-          </button>
-        </footer>
+          <footer className="note-footer">
+            <div className="input-container">
+              <ColorPalette
+                color={note.backgroundColor}
+                changeColor={(color) =>
+                  setNote((prev) => ({ ...prev, backgroundColor: color }))
+                }
+              />
+              <TagInputs handleChange={addTag} tag={note.tag} />
+              <select
+                onChange={handleChange}
+                value={note.priority}
+                name="priority"
+                className="input-dropdown"
+              >
+                <option value="Low" selected>
+                  Low
+                </option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+            <button className="btn warning" type="submit">
+              {id ? "Update" : "Add"}
+            </button>
+          </footer>
+        </>
       )}
     </form>
   );

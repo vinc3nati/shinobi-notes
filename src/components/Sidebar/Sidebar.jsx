@@ -1,17 +1,17 @@
 import React from "react";
 import { FaLightbulb, FaArchive, FaTrash } from "react-icons/fa";
 import { MdLabel } from "react-icons/md";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useData, useShrinkSidebar } from "../../contexts";
-import { capitalize } from "../../utils/capitalize";
 
 export const Sidebar = () => {
   const { shrink } = useShrinkSidebar();
   const {
     state: { tags },
   } = useData();
+
   return (
-    <aside className="sidebar" style={{ maxWidth: shrink ? "50px" : "" }}>
+    <aside className="sidebar" style={{ maxWidth: shrink ? "7rem" : "" }}>
       <ul className={shrink ? "sidebar-list m-1" : "sidebar-list"}>
         <NavLink
           to="/notes"
@@ -52,7 +52,8 @@ export const Sidebar = () => {
             (tag) =>
               tag && (
                 <NavLink
-                  to={`/${tag}`}
+                  key={tag}
+                  to={`/${encodeURIComponent(tag)}`}
                   className={({ isActive }) =>
                     isActive ? "sidebar-link active" : "sidebar-link"
                   }
@@ -68,7 +69,7 @@ export const Sidebar = () => {
                   end
                 >
                   <MdLabel />
-                  <p className={shrink ? "hide" : ""}>{capitalize(tag)}</p>
+                  <p className={shrink ? "hide" : ""}>{tag}</p>
                 </NavLink>
               )
           )}

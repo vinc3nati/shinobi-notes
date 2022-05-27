@@ -1,9 +1,12 @@
 .sidebar {
-  position: fixed;
+  top: 75px;
   left: 0;
-  height: 100%;
-  width: 100%;
+  bottom:0;
+  position:fixed;
+  overflow-y:scroll;
+  overflow-x:hidden;
   max-width: 250px;
+  width: 100%;
   z-index: 10;
 }
 
@@ -30,7 +33,7 @@
 }
 
 .sidebar-link:not(.active):hover {
-  background-color: var(--color-grey-dark);
+  background-color: var(--color-background-accent);
 }
 
 .hide {
@@ -43,6 +46,7 @@
 
 @media only screen and (max-width: 768px) {
   .sidebar {
+    top: 82px;
     padding-top: 10px;
     max-width: 180px;
     background-color: var(--color-background-accent);

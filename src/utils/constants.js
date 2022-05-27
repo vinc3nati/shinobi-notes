@@ -2,6 +2,7 @@ const ACTIONS = {
   SetNotes: "SET_NOTES",
   SetArchives: "SET_ARCHIVES",
   SetTrash: "SET_TRASH",
+  SetTags: "SET_TAGS",
   ChangeFilters: "CHANGE_FILTERS",
   ClearFilters: "CLEAR_FILTERS",
 };

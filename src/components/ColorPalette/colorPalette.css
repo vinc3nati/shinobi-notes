@@ -1,0 +1,73 @@
+.color-palette {
+    position: relative;
+  }
+  
+  .color-palette-colors {
+    position: absolute;
+    top: calc(100% + 8px);
+    background-color: var(--color-background);
+    border-radius: 5px;
+    border: 1px solid var(--color-background-accent-two);
+    padding: 1rem;
+    width: 16rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  }
+  
+  .color-palette-icon {
+      font-size: 2rem;
+      cursor: pointer;
+  }
+
+  .color-palette-colors > span {
+    cursor: pointer;
+    padding: 1.25rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+  }
+  
+  .color-note-bg {
+    background-color: var(--color-background);
+  }
+  
+  .color-note-1 {
+    background-color: var(--color-note-1);
+  }
+  
+  .color-note-2 {
+    background-color: var(--color-note-2);
+  }
+  
+  .color-note-3 {
+    background-color: var(--color-note-3);
+  }
+  
+  .color-note-4 {
+    background-color: var(--color-note-4);
+  }
+  
+  .color-note-5 {
+    background-color: var(--color-note-5);
+  }
+  
+  .color-note-6 {
+    background-color: var(--color-note-6);
+  }
+  
+  .color-note-7 {
+    background-color: var(--color-note-7);
+  }
+  
+  .color-highlight {
+    outline: 3px solid var(--color-background-accent-three);
+  }
+  
+  .color-outline {
+    outline: 1px solid var(--color-background-accent-three);
+  }

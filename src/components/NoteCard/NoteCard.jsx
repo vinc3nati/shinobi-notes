@@ -121,9 +121,8 @@ export const NoteCard = ({ operations, tagOperation, isTrash }) => {
   };
 
   return (
-    <div style={{ backgroundColor: backgroundColor }} className="note-card">
+    <div className={`note-card ${backgroundColor}`}>
       <div className="note-filters">
-        {!tagOperation && tag && <span className="note-card-tag">{tag}</span>}
         <span className="note-priority">{priority}</span>
       </div>
       <header className="note-header">
@@ -147,6 +146,14 @@ export const NoteCard = ({ operations, tagOperation, isTrash }) => {
         className="note-card-body"
         dangerouslySetInnerHTML={{ __html: body }}
       />
+      <div className="tag-chip-container">
+        {tag &&
+          tag.map((item) => (
+            <div key={item} className="tag-chip">
+              {item}
+            </div>
+          ))}
+      </div>
       <p className="note-card-time">Created At: {createdAt}</p>
       <footer className="note-card-footer">
         <button
